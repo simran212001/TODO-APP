@@ -5,10 +5,10 @@ Third party application can be in any language or anywhere , it can be a mobile 
 import json
 import requests
 URL = "http://127.0.0.1:8000/"
-URL2 = "http://127.0.0.1:8000/task-detail/1/"
+URL2 = "http://127.0.0.1:8000/task-detail/16/"
 URL3 = "http://127.0.0.1:8000/task-create/"
-URL4 = "http://127.0.0.1:8000/task-update/3/"
-URL5 = "http://127.0.0.1:8000/task-delete/5/"
+URL4 = "http://127.0.0.1:8000/task-update/19/"
+URL5 = "http://127.0.0.1:8000/task-delete/16/"
 '''
 We want to extract data from database table
 sent request to get the data
@@ -26,12 +26,12 @@ def get_data(id = None):
     data = r.json()
     print(data)
 # get_data(id ='2')      //got the data for id =2
-get_data()               
+# get_data()               
 
 def detail_data():
     data = {
         # we have to mention the id for the details
-        'id ':1
+        'id ':16
     }
 
     json_data = json.dumps(data)
@@ -46,41 +46,42 @@ def detail_data():
 def post_data():
 # python data
     data ={
-        'task_title':'Tutorial',
-        'task_desc':'Django Rest framework learning tutorial'
+        'task_title':'Internship',
+        'task_desc':'Creating todo app ,and this is third party application'
     }
     # converting python to json data
-    json_data = json.dumps(data)
+    # json_data = json.dumps(data)
     # requesting url to post the data in the database table
-    r = requests.post(url=URL3 , data= json_data)
-    data = r.json()
+    r = requests.post(url=URL3 , data= data)
+    # data = r.json()
     print(data)
 # post_data()
+
 
 
 # Function for updating the data
 def update_data():
     data = {
         # we have to mention the id for updating the details
-        'id ':3,
+        'id ':19,
         # lets we want to change the name and city for id 3
         'task_title':'Tutorial',
         'task_desc':'Django learning tutorial'
     }
     # python to json
-    json_data = json.dumps(data)
+    # json_data = json.dumps(data)
     # requesting url for updating the data in the database table
-    r = requests.post(url= URL4 , data=json_data)
-    data = r.json()
+    r = requests.post(url= URL4 , data=data)
+    # data = r.json()
     print(data)
-# update_data()
+update_data()
 
 
 # Function for deleting the data
 def delete_data():
 
     data={
-        'id':5
+        'id':16
     }
     # python to json
     json_data = json.dumps(data)
@@ -89,3 +90,15 @@ def delete_data():
     data = r.json()
     print(data)
 # delete_data()
+
+
+
+
+
+# {
+# "task_title" :
+# "task_desc":
+# }
+
+
+# e:/Django/TODO/newenv/Scripts/Activate.ps1

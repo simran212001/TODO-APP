@@ -54,15 +54,17 @@ def taskDetail(request, pk):
 
 @api_view(['POST'])
 def taskCreate(request):
-    json_data = request.body
-    stream = io.BytesIO(json_data)
-    pythondata = JSONParser().parse(stream)
-    serializer = TaskSerializer(data=pythondata)
+    # json_data = request.body
+    # stream = io.BytesIO(json_data)
+    # pythondata = JSONParser().parse(stream)
+    # serializer = TaskSerializer(data=pythondata)
+    serializer = TaskSerializer(data=request.data)
 
     if serializer.is_valid():
         # if serialized data is valid then data will be saved into db
         serializer.save()
-    return Response(serializer.data)
+    # return Response(serializer.data)
+    return JsonResponse(serializer.data ,safe= False )
 
 
 
@@ -70,16 +72,16 @@ def taskCreate(request):
 @api_view(['POST'])
 def taskUpdate(request, pk):
     task = Task.objects.get(id = pk)
-    json_data = request.body
-    stream = io.BytesIO(json_data)
-    pythondata = JSONParser().parse(stream)
-    # serializer = TaskSerializer(instance=task, data=request.data)
-    serializer = TaskSerializer(instance = task,data= pythondata)
+    # json_data = request.body
+    # stream = io.BytesIO(json_data)
+    # pythondata = JSONParser().parse(stream)
+    serializer = TaskSerializer(instance=task, data=request.data)
+    # serializer = TaskSerializer(instance = task,data= pythondata)
 
     if serializer.is_valid():
         serializer.save()
     # return Response(serializer.data)
-    return JsonResponse(serializer.data ,safe= False )
+    return JsonResponse(serializer.data ,safe= True )
 
 
 @api_view(['DELETE'])
